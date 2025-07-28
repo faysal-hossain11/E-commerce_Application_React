@@ -45,7 +45,7 @@ const products = [
         description: "Denim slim fit jeans with a modern look.",
         category: "Jeans",
         rating: 2.3,
-        sizes: ["30", "32", "34", "36"],
+        sizes: ["M", "L", "XL", "XXL"],
         colors: ["Blue", "Black"],
         stock: 40,
         isNew: true,
