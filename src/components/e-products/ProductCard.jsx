@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { getImageURL } from '../../utils/productUtils';
 import Rating from './Rating';
 import { ProductContext } from '../../context';
+import { toast } from 'react-toastify';
 
-const ProductCard = ({product}) => {
+const ProductCard = ({ product }) => {
 
-    const {state, dispatch} = useContext(ProductContext)
+    const { state, dispatch } = useContext(ProductContext)
 
     const handleAddToCart = (e, product) => {
         e.preventDefault();
@@ -15,15 +16,20 @@ const ProductCard = ({product}) => {
             return item?.id === product?.id;
         });
 
-        if(!find) {
+        if (!find) {
             dispatch({
                 type: "ADD_TO_CART",
                 payload: {
                     ...product
                 }
             })
+            toast.success(`Add to cart ${product?.title} this product!`, {
+                position: "bottom-right"
+            })
         } else {
-            console.error("Product Not added!")
+            toast.error(`${product?.title} is already in the cart!`, {
+                position: "bottom-right"
+            })
         }
     }
 
@@ -48,10 +54,10 @@ const ProductCard = ({product}) => {
                     </p>
 
                 </div>
-                <button 
+                <button
                     className="disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed w-full mt-2 bg-gray-800 py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all active:bg-gray-900"
                     onClick={(e) => handleAddToCart(e, product)}
-                    >Add to Cart</button>
+                >Add to Cart</button>
             </div>
         </div>
     );

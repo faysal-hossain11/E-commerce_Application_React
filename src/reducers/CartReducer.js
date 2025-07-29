@@ -1,14 +1,16 @@
 const initialState = {
-    productData: []
+    productData: [],
+    totalPrice: 0
 }
 
 const cartReducer = (state, action) => {
     switch (action.type) {
-        case "ADD_TO_CART": 
+        case "ADD_TO_CART":
             return {
                 productData: [
                     ...state.productData,
-                    action.payload
+                    // ...action.payload
+                    { ...action.payload, quantity: 1 }
                 ]
             }
         case "REMOVE_FROM_CART":
@@ -16,6 +18,29 @@ const cartReducer = (state, action) => {
                 ...state,
                 productData: state.productData.filter((product) => product?.id !== action?.payload?.id)
             }
+        case "INCREASE_QUANTITY":
+            return {
+                ...state,
+                productData: state.productData.map((item) =>
+                    item?.id === action?.payload?.id ? { ...item, quantity: item.quantity + 1 } : item
+                )
+            }
+        case "DECREASE_QUANTITY":
+            return {
+                ...state,
+                productData: state.productData.map((item) => 
+                    item?.id === action?.payload?.id && item?.quantity > 1 ? {...item, quantity: item.quantity - 1} : item
+                )
+            }
+        // case "GET_TOTAL_PRICE":
+        //     const total = state.productData.reduce((acc, item) => {
+        //         return acc + item.price * item.quantity;
+        //     }, 0);
+        //     return {
+        //         ...state,
+        //         totalPrice: total,
+        //     };
+
         default:
             return state;
     }

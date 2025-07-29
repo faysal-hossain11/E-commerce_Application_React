@@ -7,6 +7,8 @@ import Header from './components/Header'
 import Newsletter from './components/Newsletter'
 import { ProductContext } from './context'
 import { cartReducer, initialState } from './reducers/CartReducer'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
         <ProductList />
         <Newsletter />
         <Footer />
+
+        <ToastContainer />
 
       </ProductContext.Provider>
     </>
