@@ -33,7 +33,9 @@ const ProductCard = ({ product }) => {
         }
     }
 
-
+    if (!state || state.length === 0) {
+        return <div className='text-center'>No products available!</div>
+    }
 
     return (
         <div className="bg-gray-100 rounded-lg overflow-hidden transition-transform hover:scale-[1.02] duration-300">
@@ -55,7 +57,7 @@ const ProductCard = ({ product }) => {
 
                 </div>
                 <button
-                    className="disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed w-full mt-2 bg-gray-800 py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all active:bg-gray-900"
+                    className="disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed w-full mt-2 bg-gray-800 py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all active:bg-gray-900 hover:bg-red-400 hover:cursor-pointer"
                     onClick={(e) => handleAddToCart(e, product)}
                 >Add to Cart</button>
             </div>

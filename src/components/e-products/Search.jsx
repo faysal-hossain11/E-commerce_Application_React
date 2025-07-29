@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ProductContext } from '../../context';
 
 const Search = () => {
+    const { setSearchQuery } = useContext(ProductContext);
+
     return (
         <div className="relative hidden md:block w-64">
-            <input type="text" placeholder="Search for products..."
-                className="w-full bg-gray-100 rounded-full py-2 px-4 text-sm" />
+            <input 
+                type="text" 
+                placeholder="Search for products..."
+                className="w-full bg-gray-100 rounded-full py-2 px-4 text-sm" 
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
             <span className="absolute right-3 top-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">

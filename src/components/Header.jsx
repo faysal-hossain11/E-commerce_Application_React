@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import Search from './Search';
 import { ProductContext } from '../context';
+import Search from './e-products/Search';
 
 const Header = () => {
     const { state } = useContext(ProductContext)

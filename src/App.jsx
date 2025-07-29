@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useReducer, useState } from 'react'
 import './App.css'
 import AnnouncementBar from './components/AnnouncementBar'
 import ProductList from './components/e-products/ProductList'
@@ -13,12 +13,11 @@ import 'react-toastify/dist/ReactToastify.css'
 function App() {
 
   const [state, dispatch] = useReducer(cartReducer, initialState);
-
-  console.log("state", state);
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <>
-      <ProductContext.Provider value={{ state, dispatch }}>
+      <ProductContext.Provider value={{ state, dispatch, searchQuery, setSearchQuery }}>
 
         <AnnouncementBar />
         <Header />
