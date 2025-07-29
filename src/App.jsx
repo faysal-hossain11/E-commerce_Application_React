@@ -14,10 +14,11 @@ function App() {
 
   const [state, dispatch] = useReducer(cartReducer, initialState);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("Most Popular")
 
   return (
     <>
-      <ProductContext.Provider value={{ state, dispatch, searchQuery, setSearchQuery }}>
+      <ProductContext.Provider value={{ state, dispatch, searchQuery, setSearchQuery, sortOption, setSortOption }}>
 
         <AnnouncementBar />
         <Header />

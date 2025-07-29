@@ -7,14 +7,23 @@ import { ProductContext } from '../../context';
 
 const ProductList = () => {
 
-    const { searchQuery } = useContext(ProductContext)
+    const { searchQuery, sortOption } = useContext(ProductContext)
 
     const products = getProducts();
+
+    // search filter
     const filteredProducts = products.filter((product) =>
         product?.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    
+    // sort apply
+    if (sortOption === "Low to High") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+    } else if (sortOption === "High to Low") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+    } else if (sortOption === "Newest") {
+        filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
 
 
     return (
@@ -36,8 +45,6 @@ const ProductList = () => {
                                 )
                             })
                         }
-
-
                     </div>
                 </div>
 

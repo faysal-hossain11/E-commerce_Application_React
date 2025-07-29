@@ -9,8 +9,11 @@ const cartReducer = (state, action) => {
             return {
                 productData: [
                     ...state.productData,
-                    // ...action.payload
-                    { ...action.payload, quantity: 1 }
+                    { 
+                        ...action.payload, 
+                        quantity: 1,
+                        stock: action.payload.stock - 1 
+                    }
                 ]
             }
         case "REMOVE_FROM_CART":
@@ -32,15 +35,6 @@ const cartReducer = (state, action) => {
                     item?.id === action?.payload?.id && item?.quantity > 1 ? {...item, quantity: item.quantity - 1} : item
                 )
             }
-        // case "GET_TOTAL_PRICE":
-        //     const total = state.productData.reduce((acc, item) => {
-        //         return acc + item.price * item.quantity;
-        //     }, 0);
-        //     return {
-        //         ...state,
-        //         totalPrice: total,
-        //     };
-
         default:
             return state;
     }
