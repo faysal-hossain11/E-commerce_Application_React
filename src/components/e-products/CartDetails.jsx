@@ -9,7 +9,6 @@ const CartDetails = () => {
 
 
     const { state, dispatch } = useContext(ProductContext);
-    // console.log("add to cart", state?.productData);
 
     const handleDelete = (item, id) => {
         dispatch({
@@ -79,13 +78,14 @@ const CartDetails = () => {
                                         <p className="font-bold">${item?.price}</p>
                                         <div className="flex items-center space-x-2">
                                             <button
-                                                className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center"
+                                                className="w-6 h-6 rounded flex items-center justify-center bg-green-100 cursor-pointer"
                                                 onClick={() => handleDecrease(item, item?.id)}
                                             >−</button>
                                             <span className="text-sm">{item?.quantity}</span>
                                             <button
-                                                className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center"
+                                                className="w-6 h-6 rounded flex items-center justify-center bg-green-100 cursor-pointer"
                                                 onClick={() => handleIncrease(item, item?.id)}
+                                                disabled={item?.quantity > item?.stock }
                                             >+</button>
                                         </div>
                                     </div>
